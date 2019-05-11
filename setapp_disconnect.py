@@ -30,12 +30,12 @@ def notify(title, text):
 def site_login():
     try:
         driver.get("https://my.setapp.com/login")
-        time.sleep(2)
+        time.sleep(4)
         driver.find_element_by_id("email").send_keys("marco.loew@haw-hamburg.de")
         time.sleep(0.1)
         driver.find_element_by_id("password").send_keys("je88kk312E\x23set")
         time.sleep(0.1)
-        driver.find_element_by_css_selector("button.btn.btn-block.btn-success").click()
+        driver.find_element_by_css_selector("button.btn.btn-block.btn-primary").click()
         time.sleep(3)
         driver.find_element_by_css_selector("a[href*='/devices']").click()
         time.sleep(3)
@@ -80,8 +80,8 @@ login_button.grid(column=0, row=2, sticky="WE", padx=10, pady=5)
 quit_button = ttk.Button(win, text="Quit Instance", command=_exit)
 quit_button.grid(column=0, row=3, sticky="WE", padx=10, pady=5)
 
-site_login()
-notify("Completed", "This Mac is now ready for login to Setapp.")
+# site_login()
+# notify("Completed", "This Mac is now ready for login to Setapp.")
 
 # menubar
 menubar = Menu(win)
