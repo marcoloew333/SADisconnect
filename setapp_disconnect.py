@@ -44,6 +44,7 @@ def site_login():
         driver.find_element_by_css_selector("button[data-qa*='disconnect-device-confirm-btn']").click()
         time.sleep(0.3)
         driver.quit()
+        notify("Completed", "This Mac is now ready for login to Setapp.")
     except ConnectionError:
         notify("Error", "Disconnect failed")
 
