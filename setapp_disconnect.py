@@ -5,6 +5,7 @@ try:
     import tkinter as tk
     from tkinter import ttk
     from tkinter import Menu
+    from tkinter import messagebox as mBox
 except ImportError:
     print("Necessary module could not be loaded")
 
@@ -27,13 +28,17 @@ def notify(title, text):
               """.format(text, title))
 
 
+def _msgBox():
+    mBox.showwarning("Warning", "Disconnect interrupted")
+
+
 def site_login():
     try:
         driver.get("https://my.setapp.com/login")
         time.sleep(4)
-        driver.find_element_by_id("email").send_keys("marco.loew@haw-hamburg.de")
+        driver.find_element_by_id("email").send_keys(entered_login_mail.get())  # ("marco.loew@haw-hamburg.de")
         time.sleep(0.1)
-        driver.find_element_by_id("password").send_keys("je88kk312E\x23set")
+        driver.find_element_by_id("password").send_keys(entered_login_pw.get())
         time.sleep(0.1)
         driver.find_element_by_css_selector("button.btn.btn-block.btn-primary").click()
         time.sleep(3)
@@ -61,18 +66,21 @@ def _exit():
 win = tk.Tk()
 win.title("Linked In Downloader")
 
+# Icon
+win.iconbitmap("SetappDisconnectIcon.icns")
+
 # UI design
 AccountDetailsFrame = ttk.LabelFrame(win, text="Login")
 AccountDetailsFrame.grid(column=0, row=0, padx=10, pady=10)
 
 ttk.Label(AccountDetailsFrame, text="Mail Address").grid(column=0, row=0)
-login_mail = tk.StringVar()
+login_mail = tk.StringVar(value="marco.loew@haw-hamburg.de")  # initializing string variable
 entered_login_mail = tk.Entry(AccountDetailsFrame, width=25, textvariable=login_mail)
 entered_login_mail.grid(column=1, row=0)
 
 ttk.Label(AccountDetailsFrame, text="Password").grid(column=0, row=1)
 login_pw = tk.StringVar()
-entered_login_pw = tk.Entry(AccountDetailsFrame, width=25, textvariable=login_pw)
+entered_login_pw = tk.Entry(AccountDetailsFrame, width=25, textvariable=login_pw, show="*")
 entered_login_pw.grid(column=1, row=1)
 
 # button
@@ -90,12 +98,10 @@ win.config(menu=menubar)
 fileMenu = Menu(menubar)
 menubar.add_cascade(label="File", menu=fileMenu)
 fileMenu.add_command(label="Exit", command=_exit)
+fileMenu.add_command(label="About", command=_msgBox)
 
 for child in AccountDetailsFrame.winfo_children():
     child.grid_configure(padx=10, pady=10)
 
 # UI execution
 win.mainloop()
-
-# driver.quit()
-
