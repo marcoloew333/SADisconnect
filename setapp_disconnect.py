@@ -59,7 +59,6 @@ def _exit():
     driver.quit()
     win.quit()
     win.destroy()
-    exit()
 
 
 # UI initialisation
