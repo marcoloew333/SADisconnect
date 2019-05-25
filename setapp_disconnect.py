@@ -32,7 +32,7 @@ def _msgBox():
     mBox.showwarning("Warning", "Disconnect interrupted")
 
 
-def site_login():
+def site_login(event):
     try:
         driver.get("https://my.setapp.com/login")
         time.sleep(4)
@@ -81,12 +81,16 @@ ttk.Label(AccountDetailsFrame, text="Password").grid(column=0, row=1)
 login_pw = tk.StringVar()
 entered_login_pw = tk.Entry(AccountDetailsFrame, width=25, textvariable=login_pw, show="*")
 entered_login_pw.grid(column=1, row=1)
+entered_login_pw.focus()
 
 # button
 login_button = ttk.Button(win, text="Connect", command=site_login)
 login_button.grid(column=0, row=2, sticky="WE", padx=10, pady=5)
 quit_button = ttk.Button(win, text="Quit Instance", command=_exit)
 quit_button.grid(column=0, row=3, sticky="WE", padx=10, pady=5)
+
+# key bindings
+entered_login_pw.bind("<Return>", site_login)
 
 # site_login()
 # notify("Completed", "This Mac is now ready for login to Setapp.")
