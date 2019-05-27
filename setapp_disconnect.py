@@ -13,7 +13,7 @@ except ImportError:
 options = webdriver.ChromeOptions()
 
 # Start Chrome in headless mode
-# options.add_argument('headless')
+options.add_argument('headless')
 
 # Set window size
 options.add_argument('window-size=1200x600')
