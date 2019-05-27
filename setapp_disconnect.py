@@ -13,7 +13,7 @@ except ImportError:
 options = webdriver.ChromeOptions()
 
 # Start Chrome in headless mode
-options.add_argument('headless')
+# options.add_argument('headless')
 
 # Set window size
 options.add_argument('window-size=1200x600')
@@ -41,8 +41,8 @@ def site_login(event):
         driver.find_element_by_id("password").send_keys(entered_login_pw.get())
         time.sleep(0.1)
         driver.find_element_by_css_selector("button.btn.btn-block.btn-primary").click()
-        time.sleep(3)
-        driver.find_element_by_css_selector("a[href*='/devices']").click()
+        time.sleep(5)
+        driver.find_element_by_xpath('//a[@href="/devices"]').click()
         time.sleep(3)
         driver.find_element_by_css_selector("button[data-qa*='disconnect-device-button']").click()
         time.sleep(3)
