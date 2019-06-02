@@ -36,7 +36,7 @@ def site_login(event):
     try:
         driver.get("https://my.setapp.com/login")
         time.sleep(4)
-        driver.find_element_by_id("email").send_keys(entered_login_mail.get())  # ("marco.loew@haw-hamburg.de")
+        driver.find_element_by_id("email").send_keys(entered_login_mail.get())
         time.sleep(0.1)
         driver.find_element_by_id("password").send_keys(entered_login_pw.get())
         time.sleep(0.1)
