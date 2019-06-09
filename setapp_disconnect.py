@@ -107,4 +107,7 @@ for child in AccountDetailsFrame.winfo_children():
     child.grid_configure(padx=10, pady=10)
 
 # UI execution
-win.mainloop()
+
+
+if __name__ == "__main__":
+    win.mainloop()
